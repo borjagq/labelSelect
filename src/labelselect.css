@@ -1,0 +1,90 @@
+.labelSelect {
+    position: absolute;
+    border-radius: 4px;
+    width: 100%;
+    font-family: sans-serif;
+    border: #cecece solid 1px;
+    background-color: #ffffff;
+}
+
+.labelSelect * {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+    color: #888888;
+}
+
+.labelSelect.unfold_up {
+    bottom: 0;
+}
+
+.labelSelect.unfold_down {
+    top: 0;
+}
+
+.labelSelect.unfolded {
+    z-index: 10;
+}
+
+.labelSelect > ul {
+    list-style: none;
+    overflow: hidden;
+    transition: max-height 0.3s;
+    max-height: 0;
+}
+
+.labelSelect > ul > li, .labelSelect > span {
+    padding: 0.3em 0.6em;
+    display: list-item;
+    width: 100%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.labelSelect > span {
+    max-width: calc(100% - 0.8em);
+}
+
+.labelSelect > ul > li:last-child {
+    border-radius: 0 0 4px 4px;
+}
+
+.labelSelect.highlight-selection > ul > li.selected,
+.labelSelect.highlight-selection > ul > li:hover {
+    background-color: rgba(0, 0, 0, 0.05);;
+}
+
+.labelSelect > span.selected-none::before,
+.labelSelect > ul > li[data-id=none]::before {
+    content: "";
+    width: calc(100% - 0.8em);
+    vertical-align: middle;
+    display: inline-block;
+    border-bottom: 1px solid;
+}
+
+.labelSelect > span::after {
+    content: "ᑉ";
+    position: absolute;
+    right: 0.6em;
+    transition: transform 0.3s;
+}
+
+.labelSelect.unfolded > span::after {
+    transform: rotate(-90deg);
+}
+
+.labelSelect.theme_black {
+    border: #909090 solid 1px;
+    background-color: #000000;
+}
+
+.labelSelect.theme_black * {
+    color: #b0b0b0;
+}
+
+.labelSelect.theme_black.highlight-selection > ul > li.selected,
+.labelSelect.theme_black.highlight-selection > ul > li:hover {
+    background-color: rgba(255, 255, 255, 0.18);;
+}

@@ -1,0 +1,1 @@
+labelSelect is a tiny plugin for jQuery that creates an HTML label selector. What is a label selector, you may ask? It is a control element with a behavior similar to the select HTML tag, displaying a set of custom options. When one of these options is selected, the control transforms itself into a regular label. The control element appears again when clicking on the label.

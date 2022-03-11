@@ -1,0 +1,330 @@
+<!doctype html>
+<html>
+	<head>
+        <meta charset="utf-8">
+        <link rel="stylesheet" type="text/css" href="include/switchify.css">
+		<link rel="stylesheet" type="text/css" href="../src/labelselect.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+		<script type="text/javascript" src="include/jquery-ui.min.js"></script>
+		<script type="text/javascript" src="include/iscroll.js"></script>
+		<script type="text/javascript" src="include/switchify.js"></script>
+        <script src="../src/labelselect.js"></script>
+        <style>
+
+            * {
+                padding: 0;
+                margin: 0;
+            }
+
+            html {
+                background-color: #f3f3f3;
+            }
+
+            body {
+                font-family: sans-serif;
+            }
+
+            .wrapper {
+                margin: 30px auto;
+                display: flex;
+                flex-direction: row;
+                align-items: center;
+                justify-content: center;
+            }
+
+            .wrapper > * {
+                padding: 30px;
+                width: 300px;
+            }
+            
+            table {
+                width: 100%;
+                border-spacing: 0;
+                background-color: #fff;
+                border-radius: 10px;
+                margin-top: 10px;
+            }
+
+            td {
+                padding: 10px;
+            }
+
+            input[type=text] {
+                width: 100%;
+                border: none;
+                background: transparent;
+            }
+
+            input[type=radio] {
+                display: none;
+            }
+
+            input[type=radio] + span::after {
+                display: inline-block;
+                width: 1em;
+            }
+
+            input[type=radio]:checked + span::after {
+                content: "✔";
+            }
+
+            button {
+                width: 100%;
+                border: none;
+                background: transparent;
+            }
+
+            .space {
+                height: 50px;
+            }
+
+            .ui-slider {
+                width: 100%;
+                height: 5px;
+                background-color: #cecece;
+                border-radius: 5px;
+                position: relative;
+            }
+
+            .ui-slider-handle {
+                width: 15px;
+                height: 15px;
+                background-color: #fff;
+                border-radius: 15px;
+                display: block;
+                position: absolute;
+                top: 0;
+                bottom: 0;
+                margin: auto;
+                box-shadow: 0 0 5px #00000036;
+                transform: translateX(-50%);
+            }
+
+            .ui-slider-range {
+                background: #4bcc23;
+                height: 100%;
+                border-top-left-radius: 5px;
+                border-bottom-left-radius: 5px;
+            }
+
+        </style>
+    </head>
+    <body>
+        <div class="wrapper">
+            <div>
+                <label id="myLabel"></label>
+            </div>
+            <nav>
+                <table>
+                    <tbody>
+                        <tr>
+                            <td><label for="replacedLabelOnSelect">replacedLabelOnSelect</label></td>
+                            <td>
+                                <input class="toSwitch" id="replacedLabelOnSelect" type="checkbox" name="replacedLabelOnSelect" checked />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><label for="highlightSel">highlightSel</label></td>
+                            <td>
+                                <input class="toSwitch" id="highlightSel" type="checkbox" name="highlightSel" checked />
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <table>
+                    <tbody>
+                        <tr>
+                            <td>
+                                <label>
+                                    <input type="radio" id="white" name="theme" value="white" checked />
+                                    <span></span>
+                                </label>
+                            </td>
+                            <td>
+                                <label for="white">White theme</label>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <label>
+                                    <input type="radio" id="black" name="theme" value="black" />
+                                    <span></span>
+                                </label>
+                            </td>
+                            <td>
+                                <label for="black">Black theme</label>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <table>
+                    <tbody>
+                        <tr>
+                            <td>
+                                <label>
+                                    <input type="radio" id="down" name="unfoldDir" value="down" checked />
+                                    <span></span>
+                                </label>
+                            </td>
+                            <td>
+                                <label for="down">Unfold down</label>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <label>
+                                    <input type="radio" id="up" name="unfoldDir" value="up" />
+                                    <span></span>
+                                </label>
+                            </td>
+                            <td>
+                                <label for="up">Unfold up</label>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <table>
+                    <tbody>
+                        <tr class="option">
+                            <td>
+                                <input type="text" name="values_id" placeholder="ID" value="one" />
+                            </td>
+                            <td>
+                                <input type="text" name="values_text" placeholder="Text" value="One" />
+                            </td>
+                            <td>
+                                <button class="del">×</button>
+                            </td>
+                        </tr>
+                        <tr class="option">
+                            <td>
+                                <input type="text" name="values_id" placeholder="ID" value="two" />
+                            </td>
+                            <td>
+                                <input type="text" name="values_text" placeholder="Text" value="Two" />
+                            </td>
+                            <td>
+                                <button class="del">×</button>
+                            </td>
+                        </tr>
+                        <tr class="option">
+                            <td>
+                                <input type="text" name="values_id" placeholder="ID" value="three" />
+                            </td>
+                            <td>
+                                <input type="text" name="values_text" placeholder="Text" value="Three" /><br/>
+                            </td>
+                            <td>
+                                <button class="del">×</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="3">
+                                <button id="new_value">New option</button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <table>
+                    <tbody>
+                        <tr>
+                            <td style="padding: 20px;">
+                                <div id="slider" name="width"></div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </nav>
+        </div>
+        <script>
+
+            $('input[type=checkbox]').switchify();
+
+            $("#slider").slider({
+                'min':      20,
+                'max':      300,
+                'value':    100,
+                'range':    "min",
+                'slide':   inputChange
+            });
+
+            $('#myLabel').labelSelect({
+                replacedLabelOnSelect: true,
+                extraClass:     '',
+                for:            false,
+                highlightSel:   true,
+                theme:          'white',
+                unfoldDir:      'down',
+                values:         [
+                    {id: 'one', label: 'One'},
+                    {id: 'two', label: 'Two'},
+                    {id: 'three', label: 'Three'},
+                ],
+                width:           '100px'
+            });
+
+            function inputChange(e) {
+
+                let values = []
+
+                $('.option').each(function(i, elm) {
+
+                    let ids = $(elm).find('input[name=values_id]').val();
+                    let txts = $(elm).find('input[name=values_text]').val();
+
+                    if (ids && txts) {
+
+                        values.push({
+                            id:     ids,
+                            label:  txts
+                        });
+
+                    }
+
+                });
+
+                $('#myLabel').labelSelect({
+                    replacedLabelOnSelect: $('#replacedLabelOnSelect').prop('checked'),
+                    highlightSel:   $('#highlightSel').prop('checked'),
+                    theme:          $('input[name=theme]:checked').val(),
+                    unfoldDir:      $('input[name=unfoldDir]:checked').val(),
+                    values:         values,
+                    width:          $("#slider").slider('value') + 'px'
+                });
+
+            }
+
+            $(document).on('change', 'input', inputChange);
+
+            $(document).on('click', 'button.del', function(e) {
+
+                $(this).parents('tr').remove();
+
+                inputChange(e);
+
+            });
+
+            $(document).on('click', '#new_value', function(e) {
+
+                var newElm = '<tr class="option">' +
+                        '<td>' +
+                            '<input type="text" name="values_id" placeholder="ID" value="" />' +
+                        '</td>' +
+                        '<td>' +
+                            '<input type="text" name="values_text" placeholder="Text" value="" /><br/>' +
+                        '</td>' +
+                        '<td>' +
+                            '<button class="del">×</button>' +
+                        '</td>'
+                    '</tr>';
+                newElm = $(newElm);
+
+                $(this).parents('tr').before(newElm);
+
+                inputChange(e);
+
+            });
+            
+        </script>
+    </body>
+</html>

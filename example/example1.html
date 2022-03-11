@@ -1,0 +1,31 @@
+<!doctype html>
+<html>
+	<head>
+        <meta charset="utf-8">
+		<link rel="stylesheet" type="text/css" href="../src/labelselect.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+		<script type="text/javascript" src="include/iscroll.js"></script>
+        <script src="../src/labelselect.js"></script>
+    </head>
+    <body>
+        <label id="myLabel"></label>
+        <script>
+
+            $('#myLabel').labelSelect({
+                replacedLabelOnSelect: true,
+                extraClass:     '',
+                for:            false,
+                highlightSel:   true,
+                theme:          'white',
+                unfoldDir:      'down',
+                values:         [
+                    {id: 'one', label: 'One'},
+                    {id: 'two', label: 'Two'},
+                    {id: 'three', label: 'Three'},
+                ],
+                width:           '100px'
+            });
+            
+        </script>
+    </body>
+</html>
